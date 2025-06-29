@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Festival Timetable</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #0ff;
+    }
+
+    .day-selector {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .day-selector button {
+      background: #111;
+      color: #0ff;
+      border: 1px solid #0ff;
+      padding: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    .day-selector button:hover,
+    .day-selector button.active {
+      background: #0ff;
+      color: #000;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .stage {
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+
+    .stage h3 {
+      color: #09f;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #222;
+      padding-bottom: 5px;
+    }
+
+    .slot {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .slot:hover {
+      background: linear-gradient(90deg, #0ff, #09f);
+      color: #000;
+      box-shadow: 0 0 12px rgba(0,255,255,0.2);
+    }
+
+    .artist { font-weight: bold; font-size: 1.1rem; }
+    .time { font-size: 0.9rem; opacity: 0.8; }
+    .now { color: #0f0; font-weight: bold; margin-top: 5px; }
+    .countdown { font-size: 0.8rem; color: #ccc; margin-top: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>Festival Timetable</h1>
+<div class="day-selector" id="dayButtons"></div>
+<div class="grid" id="timetable"></div>
+
+<script>
+  const days = {
+    'Day 1': [
+      {
+        stage: 'Maia',
+        acts: [
+          { artist: "Meta[noia] Live", start: "14:00", end: "15:00" },
+          { artist: "Oscar Mulero", start: "15:00", end: "16:00" },
+          { artist: "Juan Atkins", start: "16:00", end: "17:00" },
+          { artist: "DVS1", start: "17:00", end: "18:00" },
+          { artist: "Ben Klock", start: "18:00", end: "19:00" }
+        ]
+      },
+      {
+        stage: 'Humanize',
+        acts: [
+          { artist: "Function", start: "14:30", end: "15:30" },
+          { artist: "Donato Dozzy", start: "15:30", end: "16:30" },
+          { artist: "Dasha Rush", start: "16:30", end: "17:30" },
+          { artist: "SHXCXCHCXSH Live", start: "17:30", end: "18:30" },
+          { artist: "Blawan", start: "18:30", end: "19:30" }
+        ]
+      },
+      {
+        stage: 'Granular',
+        acts: [
+          { artist: "Darkduction Live", start: "10:30", end: "15:15" },
+          { artist: "Mike Parker", start: "15:15", end: "16:15" },
+          { artist: "Cio D'Or", start: "16:15", end: "17:15" },
+          { artist: "Rrose Live", start: "17:15", end: "18:15" },
+          { artist: "Surgeon Live", start: "18:15", end: "19:15" }
+        ]
+      }
+    ],
+    'Day 2': [
+      {
+        stage: 'Stage A',
+        acts: [
+          { artist: "Regis", start: "14:00", end: "15:00" },
+          { artist: "Vatican Shadow", start: "15:00", end: "16:00" },
+          { artist: "Kangding Ray", start: "16:00", end: "17:00" },
+          { artist: "Shifted Live", start: "17:00", end: "18:00" },
+          { artist: "Ancient Methods", start: "18:00", end: "19:00" }
+        ]
+      },
+      {
+        stage: 'Stage B',
+        acts: [
+          { artist: "Reeko", start: "14:30", end: "15:30" },
+          { artist: "Kobosil", start: "15:30", end: "16:30" },
+          { artist: "Etapp Kyle", start: "16:30", end: "17:30" },
+          { artist: "SNTS", start: "17:30", end: "18:30" },
+          { artist: "Zadig", start: "18:30", end: "19:30" }
+        ]
+      },
+      {
+        stage: 'Stage C',
+        acts: [
+          { artist: "Inigo Kennedy", start: "14:15", end: "15:15" },
+          { artist: "Peter Van Hoesen Live", start: "15:15", end: "16:15" },
+          { artist: "Jonas Kopp", start: "16:15", end: "17:15" },
+          { artist: "Henning Baer", start: "17:15", end: "18:15" },
+          { artist: "Claudio PRC", start: "18:15", end: "19:15" }
+        ]
+      }
+    ]
+  };
+
+  const dayButtons = document.getElementById("dayButtons");
+  const timetable = document.getElementById("timetable");
+
+  function parseTime(str) {
+    const [h, m] = str.split(":".trim()).map(Number);
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate(), h, m);
+  }
+
+  function isNow(start, end) {
+    const now = new Date();
+    return now >= parseTime(start) && now < parseTime(end);
+  }
+
+  function getTimeLeft(end) {
+    const now = new Date();
+    const endTime = parseTime(end);
+    const diff = endTime - now;
+    if (diff <= 0) return "Finalizado";
+    const mins = Math.floor(diff / 60000);
+    return `Finaliza en ${mins} min`;
+  }
+
+  function renderDay(dayName) {
+    document.querySelectorAll(".day-selector button").forEach(btn => btn.classList.remove("active"));
+    document.querySelector(`button[data-day='${dayName}']`).classList.add("active");
+
+    timetable.innerHTML = "";
+    const day = days[dayName];
+    day.forEach(stage => {
+      const col = document.createElement("div");
+      col.className = "stage";
+      const title = document.createElement("h3");
+      title.textContent = stage.stage;
+      col.appendChild(title);
+
+      stage.acts.forEach(act => {
+        const div = document.createElement("div");
+        div.className = "slot";
+        div.innerHTML = `
+          <div class="artist">${act.artist}</div>
+          <div class="time">${act.start} – ${act.end}</div>
+          ${isNow(act.start, act.end) ? '<div class="now">▶️ PLAY NOW</div>' : ''}
+          <div class="countdown">${getTimeLeft(act.end)}</div>
+        `;
+        col.appendChild(div);
+      });
+      timetable.appendChild(col);
+    });
+  }
+
+  for (const dayName in days) {
+    const btn = document.createElement("button");
+    btn.textContent = dayName;
+    btn.setAttribute("data-day", dayName);
+    btn.onclick = () => renderDay(dayName);
+    dayButtons.appendChild(btn);
+  }
+
+  renderDay("Day 1");
+  setInterval(() => renderDay(document.querySelector(".day-selector button.active").getAttribute("data-day")), 60000);
+</script>
+
+</body>
+</html>
