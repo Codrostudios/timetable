@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rayo Ganga Tour 2025 — Shows</title>
+  <style>
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --accent: #e7d781;
+      --card-bg: rgba(255,255,255,0.05);
+      --hover-accent: #e7d781;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+    header p {
+      font-size: 1rem;
+      color: var(--accent);
+      margin-top: 8px;
+    }
+    .grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      padding: 20px;
+      transition: transform .3s, background .3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.1);
+    }
+    .card .date {
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .card .city {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+    .card .venue {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: #000;
+      background: var(--accent);
+      border-radius: 30px;
+      transition: background .3s;
+    }
+    .btn:hover {
+      background: var(--hover-accent);
+      color: #000;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>J Balvin - Rayo Ganga Tour 2025</h1>
+      <p>Juan Gomez - Stage Manager - Puesto Show&nbsp;</p>
+    </header>
+    <div class="grid">
+      <!-- Repetir por cada show -->
+      <div class="card">
+        <div class="date">16 AGO</div>
+        <div class="city">Suita, Japan</div>
+        <div class="venue">Expo '70 Commemorative Park</div>
+        <a class="btn" href="https://www.google.com/search?q=vuelos+a+Suita+16+agosto+2025" target="_blank">Ver vuelos</a>
+      </div>
+      <div class="card">
+        <div class="date">16 AGO</div>
+        <div class="city">Osaka, Japan</div>
+        <div class="venue">Maishima Ryokuchi Park</div>
+        <a class="btn" href="https://www.google.com/search?q=vuelos+a+Osaka+16+agosto+2025" target="_blank">Ver vuelos</a>
+      </div>
+      <div class="card">
+        <div class="date">17 AGO</div>
+        <div class="city">Chiba, Japan</div>
+        <div class="venue">ZOZO Marine Stadium</div>
+        <a class="btn" href="https://www.google.com/search?q=vuelos+a+Chiba+17+agosto+2025" target="_blank">Ver vuelos</a>
+      </div>
+      <div class="card">
+        <div class="date">12 SEP</div>
+        <div class="city">Madrid, Spain</div>
+        <div class="venue">Iberdrola Music</div>
+        <a class="btn" href="https://www.google.com/search?q=vuelos+a+Madrid+12+septiembre+2025" target="_blank">Ver vuelos</a>
+      </div>
+      <div class="card">
+        <div class="date">14 SEP</div>
+        <div class="city">São Paulo, Brazil</div>
+        <div class="venue">Autódromo José Carlos Pace</div>
+        <a class="btn" href="https://www.google.com/search?q=vuelos+a+São+Paulo+14+septiembre+2025" target="_blank">Ver vuelos</a>
+      </div>
+      <div class="card">
+        <div class="date">22 NOV</div>
+        <div class="city">Mexico City, Mexico</div>
+        <div class="venue">Autódromo Hermanos Rodríguez</div>
+        <a class="btn" href="https://www.google.com/search?q=vuelos+a+Mexico+City+22+noviembre+2025" target="_blank">Ver vuelos</a>
+      </div>
+      <div class="card">
+        <div class="date">23 NOV</div>
+        <div class="city">Mexico City, Mexico</div>
+        <div class="venue">Autódromo Hermanos Rodríguez</div>
+        <a class="btn" href="https://www.google.com/search?q=vuelos+a+Mexico+City+23+noviembre+2025" target="_blank">Ver vuelos</a>
+      </div>
+      <div class="card">
+        <div class="date">13 DIC</div>
+        <div class="city">Bogotá, Colombia</div>
+        <div class="venue">Nemesio Camacho El Campín Stadium</div>
+        <a class="btn" href="https://www.google.com/search?q=vuelos+a+Bogotá+13+diciembre+2025" target="_blank">Ver vuelos</a>
+      </div>
+    </div>
+    <footer>
+      Haz clic en "Ver vuelos" para ver las reservas realizadas a tu nombre.
+    </footer>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tareas Stage Manager - Momento del Show</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #111;
+        color: #fff;
+        margin: 0;
+        padding: 20px;
+    }
+    .stage-manager-box {
+        max-width: 800px;
+        background-color: #1c1c1c;
+        border: 2px solid #e7d781;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+    .stage-manager-box h2 {
+        text-align: center;
+        color: #e7d781;
+        margin-bottom: 15px;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    ul li {
+        background: #222;
+        margin: 8px 0;
+        padding: 12px;
+        border-left: 5px solid #e7d781;
+        border-radius: 8px;
+        transition: background 0.3s;
+    }
+    ul li:hover {
+        background: #2e2e2e;
+    }
+    .number {
+        font-weight: bold;
+        color: #e7d781;
+        margin-right: 8px;
+    }
+</style>
+</head>
+<body>
+
+<div class="stage-manager-box">
+    <h2>Tareas del Stage Manager Durante el Show</h2>
+    <ul>
+        <li><span class="number">1.</span> Comunicación en tiempo real con audio, iluminación, video, pirotecnia y seguridad.</li>
+        <li><span class="number">2.</span> Dar señales para entradas y salidas del artista y cambios de escenografía.</li>
+        <li><span class="number">3.</span> Supervisar backline: instrumentos, micrófonos y monitores listos.</li>
+        <li><span class="number">4.</span> Autorizar y coordinar efectos especiales: pirotecnia, CO₂, confeti, visuales.</li>
+        <li><span class="number">5.</span> Monitorear seguridad en pasarelas, tarimas móviles y elementos mecánicos.</li>
+        <li><span class="number">6.</span> Resolver emergencias técnicas manteniendo el show en marcha.</li>
+    </ul>
+</div>
+
+</body>
+</html>
+
+
